@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="layout/plantilla2 :: head}">
+        <title>PetVet Clinic</title>
+    </head>
+    <body>
+    
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarcliente">
+                            <i class="fas fa-plus"></i> [[#{cliente.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+        <section th:fragment="agregarCliente">
+            <div id="agregarcliente" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-white">
+                            <h5 class="modal-title">[[#{cliente.agregar}]]</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/clientes/guardar}" th:object="${cliente}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{cliente.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                    <label for="apellido">[[#{cliente.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                    <label for="telefono">[[#{cliente.telefono}]]</label>
+                                    <input type="text" class="form-control" name="telefono" required="true"/>
+                                    <label for="email">[[#{cliente.email}]]</label>
+                                    <input type="text" class="form-control" name="email" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-dark" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+      
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/clientes/eliminar/}+${clientes.idcliente}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

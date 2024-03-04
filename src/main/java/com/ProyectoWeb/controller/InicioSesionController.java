@@ -4,10 +4,17 @@
  */
 package com.ProyectoWeb.controller;
 
+import com.ProyectoWeb.domain.Cliente;
+import com.ProyectoWeb.service.ClienteService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 /**
@@ -15,12 +22,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author secog
  */
 @Controller
-@RequestMapping("/inicio sesion")
+@RequestMapping("/cliente")
 public class InicioSesionController {
-    
-  @GetMapping("/listado")
-    public String listado(Model model) {
-        return "/inicio sesion/listado";
+
+    @Autowired
+    private ClienteService clienteService;
+
+    @GetMapping("/nuevo")
+    public String clienteNuevo(Cliente cliente) {
+        return "/cliente/modifica";
+    }
+
+    @PostMapping("/guardar")
+    public String clienteGuardar(@ModelAttribute("cliente") Cliente cliente) {        
+        clienteService.save(cliente);
+        return "redirect:/cliente/listado";
     }
     
+    @GetMapping("/listado")
+    public String clienteListado(Model model) {
+        
+        
+        return "/cliente/listado";
+    }
 }
