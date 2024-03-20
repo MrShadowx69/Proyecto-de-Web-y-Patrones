@@ -24,7 +24,7 @@ public class Mascota implements Serializable{
     private String especie;
     private String raza;
     private String edad;
-    private String idCliente;
+    private Long idCliente;
     private String imagenMascota;
  
     
@@ -32,8 +32,7 @@ public class Mascota implements Serializable{
     
     }
 
-    public Mascota(Long idMascota, String nombre, String especie, String raza, String edad, String idCliente, String imagenMascota) {
-        this.idMascota = idMascota;
+    public Mascota( String nombre, String especie, String raza, String edad, Long idCliente, String imagenMascota) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;

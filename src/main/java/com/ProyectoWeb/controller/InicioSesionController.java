@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author secog
  */
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class InicioSesionController {
 
     @Autowired
@@ -30,19 +30,19 @@ public class InicioSesionController {
 
     @GetMapping("/nuevo")
     public String clienteNuevo(Cliente cliente) {
-        return "/cliente/modifica";
+        return "/clientes/modifica";
     }
 
     @PostMapping("/guardar")
     public String clienteGuardar(@ModelAttribute("cliente") Cliente cliente) {        
         clienteService.save(cliente);
-        return "redirect:/cliente/listado";
+        return "redirect:/clientes/listado";
     }
     
     @GetMapping("/listado")
     public String clienteListado(Model model) {
         
         
-        return "/cliente/listado";
+        return "/clientes/listado";
     }
 }

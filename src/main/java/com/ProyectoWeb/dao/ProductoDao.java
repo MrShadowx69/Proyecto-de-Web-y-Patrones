@@ -4,14 +4,13 @@
  */
 package com.ProyectoWeb.dao;
 
-import com.ProyectoWeb.domain.Cliente;
-import java.util.List;
+import com.ProyectoWeb.domain.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author secog
  */
-public interface ClienteDao extends JpaRepository<Cliente, Long> {
-        List<Cliente> findByEmail(String email);
+public interface ProductoDao extends JpaRepository<Producto, Long>{
+    
 }

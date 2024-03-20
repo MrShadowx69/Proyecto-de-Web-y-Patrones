@@ -4,9 +4,9 @@
  */
 package com.ProyectoWeb.service.impl;
 
-import com.ProyectoWeb.dao.ClienteDao;
-import com.ProyectoWeb.domain.Cliente;
-import com.ProyectoWeb.service.ClienteService;
+import com.ProyectoWeb.dao.ProductoDao;
+import com.ProyectoWeb.domain.Producto;
+import com.ProyectoWeb.service.ProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
  * @author secog
  */
 @Service
-public class ClienteServiceImpl implements ClienteService{
+public class ProductoServiceImpl implements ProductoService{
     @Autowired
-    private ClienteDao clienteDao;
+    private ProductoDao productoDao;
 
     @Override
     @Transactional(readOnly = true)
-    public List<Cliente> getClientes(boolean activos) {
-        var lista = clienteDao.findAll();
+    public List<Producto> getProductos(boolean activos) {
+        var lista = productoDao.findAll();
         if (activos) {
             lista.removeIf(e -> !e.isActivo());
         }
@@ -33,29 +33,19 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     @Transactional(readOnly = true)
-    public Cliente getCliente(Cliente cliente) {
-        return clienteDao.findById(cliente.getIdCliente()).orElse(null);
+    public Producto getProducto(Producto producto) {
+        return productoDao.findById(producto.getIdProducto()).orElse(null);
     }
 
     @Override
     @Transactional
-    public void save(Cliente cliente) {
-        clienteDao.save(cliente);
+    public void save(Producto producto) {
+        productoDao.save(producto);
     }
 
     @Override
     @Transactional
-    public void delete(Cliente cliente) {
-        clienteDao.delete(cliente);
+    public void delete(Producto producto) {
+        productoDao.delete(producto);
     }
-
-    @Override
-    public List<Cliente> buscarPorCorreo(String email) {
-        return clienteDao.findByEmail(email);
-    }
-
-    
-
-
-    
 }

@@ -4,29 +4,24 @@
  */
 package com.ProyectoWeb.service;
 
-import com.ProyectoWeb.domain.Cliente;
+import com.ProyectoWeb.domain.Producto;
 import java.util.List;
-
-
-
 
 /**
  *
  * @author secog
  */
-public interface ClienteService {
-
-    public List<Cliente> getClientes(boolean activos);
+public interface ProductoService {
+    
+    public List<Producto> getProductos(boolean activos);
 
     // Se obtiene un Categoria, a partir del id de un categoria
-    public Cliente getCliente(Cliente cliente);
+    public Producto getProducto(Producto producto);
 
     // Se inserta un nuevo categoria si el id del categoria esta vacío
     // Se actualiza un categoria si el id del categoria NO esta vacío
-    public void save(Cliente cliente);
+    public void save(Producto producto);
 
     // Se elimina el categoria que tiene el id pasado por parámetro
-    public void delete(Cliente cliente);
-
-    public List<Cliente> buscarPorCorreo(String email);
+    public void delete(Producto producto);
 }

@@ -24,19 +24,23 @@ public class Cliente implements Serializable{
     private String apellido;
     private String telefono;
     private String email;
+    private boolean activo;
     
     
     public Cliente(){
     
     }
 
-    public Cliente(Long idCliente, String nombre, String apellido, String telefono, String email) {
+    public Cliente(Long idCliente, String nombre, String apellido, String telefono, String email, boolean activo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
+        this.activo = activo;
     }
+
+    
     
     
     

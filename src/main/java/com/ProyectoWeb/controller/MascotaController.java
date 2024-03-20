@@ -5,6 +5,7 @@
 package com.ProyectoWeb.controller;
 
 import com.ProyectoWeb.domain.Mascota;
+import com.ProyectoWeb.service.ClienteService;
 import com.ProyectoWeb.service.MascotaService;
 
 import com.ProyectoWeb.service.impl.FireBaseStorageServiceimpl;
@@ -28,13 +29,18 @@ public class MascotaController {
 
     @Autowired
     MascotaService mascotaService;
-    
-    
+
+    @Autowired
+    ClienteService clienteService;
+
     @GetMapping("/listado")
     public String listado(Model model) {
 
         List<Mascota> lista = mascotaService.getMascotas(false);
         model.addAttribute("mascota", lista);
+        model.addAttribute("mascotas", mascotaService.getMascotas(true));
+        model.addAttribute("clientes", clienteService.getClientes(true));
+
         return "/mascotas/listado";
     }
 
@@ -45,16 +51,16 @@ public class MascotaController {
 
     @Autowired
     private FireBaseStorageServiceimpl firebaseStorageService;
-    
+
     @PostMapping("/guardar")
     public String mascotaGuardar(Mascota mascota,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             mascotaService.save(mascota);
             mascota.setImagenMascota(
                     firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "mascotas", 
+                            imagenFile,
+                            "mascotas",
                             mascota.getIdMascota()));
         }
         mascotaService.save(mascota);
@@ -71,7 +77,8 @@ public class MascotaController {
     public String mascotaModificar(Mascota mascota, Model model) {
         mascota = mascotaService.getMascota(mascota);
         model.addAttribute("mascotas", mascota);
+        model.addAttribute("clientes", clienteService.getClientes(true));
         return "/mascotas/modifica";
     }
-    
+
 }
