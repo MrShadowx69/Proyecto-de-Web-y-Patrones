@@ -47,6 +47,14 @@ public class MascotaServiceimpl implements MascotaService{
     public void delete(Mascota mascota) {
         mascotaDao.delete(mascota);
     }
+    
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Mascota> buscarPorNombre(String nombre) {
+        return mascotaDao.findByNombreContaining(nombre);
+    }
 
     
 

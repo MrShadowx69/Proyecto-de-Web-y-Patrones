@@ -24,8 +24,6 @@ public class ProductoController {
     @Autowired
     ProductoService productoService;
 
-    
-
     @GetMapping("/listado")
     public String listado(Model model) {
 
@@ -71,7 +69,22 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "/productos/modifica";
     }
-    
-  
-    
+
+    @GetMapping("/listado")
+    public String listado2(Model model) {
+        List<Producto> productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        return "/productos/listado";
+    }
+
+    @PostMapping("/query1")
+    public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, Model model) {
+        List<Producto> productos = productoService.buscarPorPrecioEntreOrderByDescripcion(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/consulta/listado";
+    }
+
 }

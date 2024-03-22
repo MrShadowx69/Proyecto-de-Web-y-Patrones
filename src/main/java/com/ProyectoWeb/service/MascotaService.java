@@ -21,4 +21,7 @@ public interface MascotaService {
     
 
     public void delete(Mascota mascota);
+    
+    List<Mascota> buscarPorNombre(String nombre);
+
 }

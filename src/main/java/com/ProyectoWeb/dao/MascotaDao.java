@@ -5,6 +5,7 @@
 package com.ProyectoWeb.dao;
 
 import com.ProyectoWeb.domain.Mascota;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author secog
  */
 public interface MascotaDao extends JpaRepository<Mascota, Long>{
+        List<Mascota> findByNombreContaining(String nombre);
+
     
 }

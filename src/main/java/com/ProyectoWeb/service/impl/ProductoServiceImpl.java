@@ -48,4 +48,11 @@ public class ProductoServiceImpl implements ProductoService{
     public void delete(Producto producto) {
         productoDao.delete(producto);
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarPorPrecioEntreOrderByDescripcion(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    }
+
 }
