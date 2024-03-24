@@ -70,7 +70,7 @@ public class ProductoController {
         return "/productos/modifica";
     }
 
-    @GetMapping("/listado")
+    @GetMapping("/listado2")
     public String listado2(Model model) {
         List<Producto> productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
@@ -80,7 +80,7 @@ public class ProductoController {
     @PostMapping("/query1")
     public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
             @RequestParam(value = "precioSup") double precioSup, Model model) {
-        List<Producto> productos = productoService.buscarPorPrecioEntreOrderByDescripcion(precioInf, precioSup);
+        List<Producto> productos = productoService.findByPrecioBetweenOrderByPrecio(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);

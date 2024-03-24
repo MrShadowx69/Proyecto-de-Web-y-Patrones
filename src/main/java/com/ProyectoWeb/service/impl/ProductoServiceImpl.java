@@ -17,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @author secog
  */
 @Service
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
+
     @Autowired
     private ProductoDao productoDao;
 
@@ -48,11 +49,11 @@ public class ProductoServiceImpl implements ProductoService{
     public void delete(Producto producto) {
         productoDao.delete(producto);
     }
-    
+
     @Override
     @Transactional(readOnly = true)
-    public List<Producto> buscarPorPrecioEntreOrderByDescripcion(double precioInf, double precioSup) {
-        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    public List<Producto> findByPrecioBetweenOrderByPrecio(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByPrecio(precioInf, precioSup);
     }
 
 }

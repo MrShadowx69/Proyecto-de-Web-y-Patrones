@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProductoDao extends JpaRepository<Producto, Long> {
 
-    List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
+    List<Producto> findByPrecioBetweenOrderByPrecio(double precioInf, double precioSup);
 
 }

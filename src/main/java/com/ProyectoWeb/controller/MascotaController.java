@@ -81,14 +81,14 @@ public class MascotaController {
         return "/mascotas/modifica";
     }
 
-    @GetMapping("/listado")
+    @GetMapping("/listado2")
     public String listado2(Model model) {
-        var mascotas = mascotaService.getMascotas(true); // 
+        var mascotas = mascotaService.getMascotas(false);
         model.addAttribute("mascotas", mascotas);
-        return "/mascotas/listado";
+        return "/pruebas/listado2";
     }
 
-    @PostMapping("/listado")
+    @PostMapping("/buscarPorNombre")
     public String buscarPorNombre(@RequestParam(value = "nombre") String nombre, Model model) {
         List<Mascota> mascotas = mascotaService.buscarPorNombre(nombre);
         model.addAttribute("mascotas", mascotas);
